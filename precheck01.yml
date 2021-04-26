@@ -1,0 +1,25 @@
+---
+- name: Precheck playbook    # this is just meta data (display name)
+  hosts: localhost           # consider ALL parts of the ansible inventory
+  connection: local          # use a local conneciton type (connect to the localhost)
+  gather_facts: yes          # ansible runs a module called setup.py (which doesn't set up anything, just defines variables)
+
+  tasks:
+          # example of displaying the value of a var to the screen (in this case, ansible_facts)
+          - name: What are the facts that were collected?
+            debug:
+                    var: ansible_facts           # usually ansible_facts is the auto defined variable for *_facts modules
+
+          - name: display the value of ansible_facts.distribution
+            debug:
+                    var: ansible_facts.distribution  # ansible_facts['distribution']
+
+          - name: display the value of ansible_facts.os_family
+            debug:
+                    var: ansible_facts.os_family
+
+          - name: assert THAT ansible_facts.os_family IS Debian
+            assert:
+                    that: ansible_facts.os_family == "Debian"
+
+
