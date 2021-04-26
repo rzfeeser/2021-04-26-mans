@@ -4,6 +4,7 @@
   connection: local          # use a local conneciton type (connect to the localhost)
   gather_facts: yes          # ansible runs a module called setup.py (which doesn't set up anything, just defines variables)
 
+
   tasks:
           # example of displaying the value of a var to the screen (in this case, ansible_facts)
           - name: What are the facts that were collected?
@@ -22,4 +23,26 @@
             assert:
                     that: ansible_facts.os_family == "Debian"
 
+          - name: assert THAT ansible_facts.distribution is Ubuntu
+            assert:
+                    that: ansible_facts.distribution == 'Ubuntu'
 
+          - name: version of python
+            debug:
+                    var: ansible_python_version[0]|int
+
+          - name: assert that ansible_facts.python_version is 3.x or higher
+            assert:
+                    #that: ansible_facts.python_version > '3'
+                    #that: ansible_python_version[0] == "3"
+                    that: ansible_python.version.major >= 3
+
+          - name: assert ansible_facts.memfree_mb is higher than 70mb
+            assert:
+                    that: ansible_facts.memfree_mb > 70
+                    #         fail_ msg: 'free space must be higher than 100mb'
+          
+          - name: Ensure all systems are type "Debian"
+            fail:
+                    msg: "Precheck condition FAILURE - not a debian system"
+            when: ansible_facts.os_family != "Debian"
