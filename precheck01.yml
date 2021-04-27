@@ -50,3 +50,8 @@
             fail:
                     msg: "Precheck condition FAILURE - not a debian system"
             when: ansible_facts.os_family != "Debian"
+
+          # example of displaying the value of a var to the screen (in this case, ansible_facts)
+          - name: What are the facts that were collected?
+            debug:
+                    var: ansible_facts.keys()           # usually ansible_facts is the auto defined variable for *_facts modules

@@ -1,0 +1,63 @@
+polar = []
+webster = {}
+artic = list()
+google = dict()
+type(polar)
+type(webster)
+type("zach")
+type(1.1)
+type(1)
+type("rachel")
+type("Larry Wilson")
+dir(polar)
+dir(webster)
+dir("zach")
+dir(1)
+type(polar)
+dir(polar)
+polar
+polar.append("zach")
+polar
+polar.append("anthony")
+polar.append("ben")
+polar.append("brad")
+polar.append("carl")
+polar
+polar[1]
+polar[0]
+polar[3]
+polar + ["larry"]
+help(polar.append)
+help(polar.count)
+polar.count("zach")
+polar.count("apple")
+polar.count("larry")
+polar
+dir(polar)
+polar.index("ben")
+polar[2]
+clear
+webster
+dir(webster)
+webster["instr"] = "zach"
+webster
+webster['student'] = 'kelly'
+webster
+polar
+polar.append("zach")
+polar
+webster["student"] = "steve"
+webster
+webster["students"] = ["steve", "kelly", "carl", "rachel"]
+webster
+webster.students
+webster["students"]
+webster["students"][2]
+webster["students"][1]
+webster["starttime"]
+dir(webster)
+help(webster.get)
+webster.get("starttime")
+webster.get("starttime", "0800")
+webster.keys()
+exit()
