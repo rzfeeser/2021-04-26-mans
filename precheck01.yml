@@ -39,12 +39,9 @@
             assert:
                     #that: ansible_facts.python_version > '3'
                     #that: ansible_python_version[0] == "3"
-                    that: ansible_python.version.major >= 3
+                    #that: ansible_python.version.major >= 3
+                    that: ansible_python.get("version", 3).get("major", 3) >= 3
 
-          - name: "assert ansible_facts.memfree_mb is higher than {{expected_free_mem}} mb"
-            assert:
-                    that: ansible_facts.memfree_mb > expected_free_mem
-                    #         fail_ msg: 'free space must be higher than 100mb'
           
           - name: Ensure all systems are type "Debian"
             fail:
@@ -55,3 +52,11 @@
           - name: What are the facts that were collected?
             debug:
                     var: ansible_facts.keys()           # usually ansible_facts is the auto defined variable for *_facts modules
+
+          - name: can we add to ansible facts?
+            set_fact:
+                    newfacts: ansible_facts.update(ansible_facts)
+
+          - name: display the "new" ansible_facts
+            debug:
+                    var: newfacts.keys()
