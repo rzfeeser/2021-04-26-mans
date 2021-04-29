@@ -1,0 +1,1 @@
+[{"name":"Our first play","hosts":"localhost","connection":"local","tasks":[{"name":"Install steam locomotive on ALL machines","apt":{"name":"sl","state":"present"},"become":"yes"}]}]
